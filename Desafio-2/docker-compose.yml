@@ -1,0 +1,28 @@
+version: '3.8'
+
+volumes:
+  mariadb_vol:
+
+services:
+  mariadb:
+    image: mariadb:${MARIADB_VERSION}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MARIADB_DATABASE}
+      MYSQL_USER: ${MARIADB_USERNAME}
+      MYSQL_PASSWORD: ${MARIADB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_vol:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:${PHPMYADMIN_VERSION}
+    depends_on:
+      - mariadb
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: ${MARIADB_USERNAME}
+      PMA_PASSWORD: ${MARIADB_PASSWORD}
+    ports:
+      - "${PHPMYADMIN_PORT}:80"

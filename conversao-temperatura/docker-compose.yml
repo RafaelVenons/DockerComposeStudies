@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  conversao-temperatura:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: ${HOSTNAME}
+    ports:
+      - ${PORT}:8080
+    command: npm start

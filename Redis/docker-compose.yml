@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:${REDIS_VERSION}
+    ports:
+      - "6379:6379"
+
+  redis-commander:
+    image: rediscommander/redis-commander:${REDISCOMMANDER_VERSION}
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "${REDISCOMMANDER_PORT}:8081"
+    depends_on:
+      - redis
+

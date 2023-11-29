@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  conversao-distancia:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: ${HOSTNAME}
+    ports:
+      - ${PORT}:5000

@@ -5,6 +5,5 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    hostname: ${HOSTNAME}
     ports:
       - ${PORT}:5000
